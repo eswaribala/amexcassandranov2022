@@ -16,4 +16,4 @@ modify cluster name
 systemctl restart cassandra
 systemctl status cassandra
 sudo iptables -A INPUT -p tcp -s 172.20.0.160 -m multiport --dports 7000,9042 -m state --state NEW,ESTABLISHED -j ACCEPT
-
+update system.local SET Cluster_name = 'RPSITHub Cluster' where key='local'
