@@ -62,6 +62,15 @@ SELECT * From abcbank.savings_account LIMIT 1;
 
 #where
 SELECT running_total, open_date FROM abcgroup.savings_account WHERE  account_no= 100000;
+
+#ALLOW Filtering
+
+SELECT * FROM abcgroup.savings_account WHERE running_total=7800 ALLOW FILTERING;
+
+#secondary index
+CREATE INDEX savings_account_idx ON savings_account (running_total);
+
+
 #Retrieving all columns in JSON format
 select json running_total, open_date FROM abcgroup.savings_account;
 #Retrieving selected columns in JSON format
