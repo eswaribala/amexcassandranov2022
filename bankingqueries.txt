@@ -48,6 +48,15 @@ COPY abcbank.savings_account(account_no,running_total,open_date,interest_rate) F
 COPY abcbank.savings_account(account_no,running_total,open_date,interest_rate)  
 TO '/data.csv' WITH HEADER = TRUE; 
 
+#json insert
+INSERT INTO savings_account JSON '{
+"account_no" : 576657,
+"running_total" : 7800,
+"open_date" : "2007-09-12",
+"interest_rate" : 0.8 }';
+
+
+
 #Limit
 SELECT * From abcbank.savings_account LIMIT 1;
 
