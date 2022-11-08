@@ -9,4 +9,9 @@ Or if using SimpleStrategy:
 cqlsh> ALTER KEYSPACE abcbank WITH REPLICATION =
 { 'class' : 'SimpleStrategy', 'replication_factor' : 2 };
 
+3a.
+If repair warning comes
+run
+nodetool repair --full
+
 4. Drop keyspace abcbank;
