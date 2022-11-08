@@ -56,6 +56,11 @@ wget https://github.com/yugabyte/cassandra-loader/releases/download/v0.0.27-yb-3
 
 chmod a+x cassandra-loader
 
+time ./cassandra-loader \
+  -f savingsaccount.csv \
+  -host 172.20.0.160 \
+  -schema "abcgroup.savings_account(account_no,running_total,open_date,interest_date)"
+
 
 
 
