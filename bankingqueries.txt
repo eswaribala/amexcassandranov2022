@@ -15,3 +15,6 @@ run
 nodetool repair --full
 
 4. Drop keyspace abcbank;
+
+5.CREATE TABLE abcbank.savings_account ( account_no bigint PRIMARY KEY, running_total bigint, open_date date, interest_rate float );
+6.CREATE TABLE abcbank.current_account ( account_no bigint PRIMARY KEY, running_total bigint, open_date date, ovedraft_limit bigint );
