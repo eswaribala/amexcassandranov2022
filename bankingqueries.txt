@@ -32,6 +32,6 @@ state text
 
 9. alter table abcbank.individual add (gender text,surname text,dob date);
 
-10.CREATE TABLE abcbank.menu (customer_list list<bigint>,account_list set<bigint>);
+10.CREATE TABLE abcbank.menu (menu_id bigint primary key,customer_list list<bigint>,account_list set<bigint>);
 
  
