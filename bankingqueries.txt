@@ -41,14 +41,25 @@ state text
 #bulk insert 
 sudo cqlsh 172.20.0.160:9042
 In csv file keep date without ''
+#import
 COPY abcgroup.savings_account(account_no,running_total,open_date,interest_date) FROM '/savingsaccount.csv' WITH DELIMITER=',' AND HEADER=TRUE
 
+#export
+COPY abcgroup.savings_account(account_no,running_total,open_date,interest_date)  
+TO '/data.csv' WITH HEADER = TRUE; 
 
 #Limit
 SELECT * From abcbank.savings_account LIMIT 1;
 
 #where
 SELECT running_total, open_date FROM abcgroup.savings_account WHERE  account_no= 100000;
+#Retrieving all columns in JSON format
+select json running_total, open_date FROM abcgroup.savings_account;
+#Retrieving selected columns in JSON format
+select running_total, toJson(open_date) from savings_account;
+
+
+
 
 #bulk loader
 
