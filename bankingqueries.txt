@@ -52,7 +52,7 @@ SELECT running_total, open_date FROM abcgroup.savings_account WHERE  account_no=
 
 #bulk loader
 
-wget https://github.com/yugabyte/cassandra-loader/releases/download/<latest-version>/cassandra-loader
+wget https://github.com/yugabyte/cassandra-loader/releases/download/v0.0.27-yb-3/cassandra-loader
 
 chmod a+x cassandra-loader
 
