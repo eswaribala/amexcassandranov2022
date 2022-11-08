@@ -18,3 +18,13 @@ nodetool repair --full
 
 5.CREATE TABLE abcbank.savings_account ( account_no bigint PRIMARY KEY, running_total bigint, open_date date, interest_rate float );
 6.CREATE TABLE abcbank.current_account ( account_no bigint PRIMARY KEY, running_total bigint, open_date date, ovedraft_limit bigint );
+
+7.CREATE TYPE abcbank.address_type (
+door_no text,
+street_name text,
+city text,
+state text
+);
+
+
+7.CREATE TABLE abcbank.individual ( account_no bigint PRIMARY KEY, name text, address FROZEN(address_type), contact_number bigint, email text, password text);
