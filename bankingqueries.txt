@@ -9,3 +9,4 @@ Or if using SimpleStrategy:
 cqlsh> ALTER KEYSPACE abcbank WITH REPLICATION =
 { 'class' : 'SimpleStrategy', 'replication_factor' : 2 };
 
+4. Drop keyspace abcbank;
