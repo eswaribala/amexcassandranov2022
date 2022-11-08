@@ -38,7 +38,9 @@ state text
 11.CREATE TABLE abcbank.branch ( branch_id bigint, branch_name text, city text, state text, contact_number bigint, primary key((city,state),branch_id));
 
 #bulk insert 
-COPY abcgroup.savingsaccount FROM 'savingsaccount.csv' WITH DELIMITER=',' AND HEADER=TRUE
+sudo cqlsh 172.20.0.160:9042
+In csv file keep date without ''
+COPY abcgroup.savings_account(account_no,running_total,open_date,interest_date) FROM '/savingsaccount.csv' WITH DELIMITER=',' AND HEADER=TRUE
 
 
 
