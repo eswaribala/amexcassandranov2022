@@ -42,10 +42,10 @@ state text
 sudo cqlsh 172.20.0.160:9042
 In csv file keep date without ''
 #import
-COPY abcgroup.savings_account(account_no,running_total,open_date,interest_date) FROM '/savingsaccount.csv' WITH DELIMITER=',' AND HEADER=TRUE
+COPY abcbank.savings_account(account_no,running_total,open_date,interest_rate) FROM '/savingsaccount.csv' WITH DELIMITER=',' AND HEADER=TRUE
 
 #export
-COPY abcgroup.savings_account(account_no,running_total,open_date,interest_date)  
+COPY abcbank.savings_account(account_no,running_total,open_date,interest_rate)  
 TO '/data.csv' WITH HEADER = TRUE; 
 
 #Limit
