@@ -26,8 +26,8 @@ city text,
 state text
 );
 
-7.CREATE TABLE abcbank.individual ( account_no bigint PRIMARY KEY, name text, address FROZEN(address_type), contact_number bigint, email text, password text);
+7.CREATE TABLE abcbank.individual ( account_no bigint PRIMARY KEY, name text, address address_type, contact_number bigint, email text, password text);
 
-8.CREATE TABLE abcbank.corporate ( account_no bigint PRIMARY KEY, name text, address FROZEN(address_type), contact_number bigint, email text, password text, company_type text);
+8.CREATE TABLE abcbank.corporate ( account_no bigint PRIMARY KEY, name text, address address_type, contact_number bigint, email text, password text, company_type text);
 
 9. alter table abcbank.individual add (gender text, surname text, dob date);
