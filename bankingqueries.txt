@@ -1,0 +1,5 @@
+1. CREATE KEYSPACE IF NOT EXISTS abcbank WITH REPLICATION = { 'class' : 'NetworkTopologyStrategy', 'datacenter1' : 1 };
+2.CREATE KEYSPACE abcbank
+WITH replication = {'class':'SimpleStrategy', ‘replication_factor' : 1};
+3.
+
