@@ -35,12 +35,28 @@ state text
 10.CREATE TABLE abcbank.menu (menu_id bigint primary key,customer_list list<bigint>,account_list set<bigint>);
 
 #composite partitionkey and primary key
-11.CREATE TABLE abcbank.branch ( branch_id bigint, branch_name text, city text, state text, contact_number bigint, primary key((city,state),branch_id));
+11.CREATE TABLE abcbank.branch ( branch_id bigint, branch_name text, city text, state text, contact_number bigint, primary key((city,state),branch_id)) WITH CLUSTERING ORDER BY (state DESC);
+;
 
 #bulk insert 
 sudo cqlsh 172.20.0.160:9042
 In csv file keep date without ''
 COPY abcgroup.savings_account(account_no,running_total,open_date,interest_date) FROM '/savingsaccount.csv' WITH DELIMITER=',' AND HEADER=TRUE
+
+
+#Limit
+SELECT * From abcbank.savings_account LIMIT 1;
+
+#where
+SELECT running_total, open_date FROM abcgroup.savings_account WHERE  account_no= 100000;
+
+#bulk loader
+
+wget https://github.com/yugabyte/cassandra-loader/releases/download/<latest-version>/cassandra-loader
+
+chmod a+x cassandra-loader
+
+
 
 
 
