@@ -68,7 +68,11 @@ SELECT running_total, open_date FROM abcgroup.savings_account WHERE  account_no=
 SELECT * FROM abcgroup.savings_account WHERE running_total=7800 ALLOW FILTERING;
 
 #secondary index
-CREATE INDEX savings_account_idx ON savings_account (running_total);
+CREATE INDEX running_total_idx ON savings_account (running_total);
+
+
+#SSAI
+CREATE CUSTOM INDEX IF NOT EXISTS running_total_sec_idx ON savings_account (running_total) USING 'org.apache.cassandra.index.sasi.SASIIndex';
 
 
 #Retrieving all columns in JSON format
