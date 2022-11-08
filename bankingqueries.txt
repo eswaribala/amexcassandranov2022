@@ -37,5 +37,10 @@ state text
 #composite partitionkey and primary key
 11.CREATE TABLE abcbank.branch ( branch_id bigint, branch_name text, city text, state text, contact_number bigint, primary key((city,state),branch_id));
 
+#bulk insert 
+COPY abcgroup.savingsaccount FROM 'savingsaccount.csv' WITH DELIMITER=',' AND HEADER=TRUE
+
+
+
 
  
