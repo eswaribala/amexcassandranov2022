@@ -121,4 +121,5 @@ CREATE TABLE reservation.guests (
   #secondary index
   create index hotel_id_idx on hotels_by_poi(hotel_id);
 
-  
+#SASI
+  CREATE CUSTOM INDEX IF NOT EXISTS hotel_id_sasi_idx ON hotels_by_poi (hotel_id) USING 'org.apache.cassandra.index.sasi.SASIIndex';
