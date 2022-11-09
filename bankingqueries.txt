@@ -85,7 +85,7 @@ CREATE CUSTOM INDEX IF NOT EXISTS running_total_sec_idx ON savings_account (runn
 
 
 #Retrieving all columns in JSON format
-select json running_total, open_date FROM abcgroup.savings_account;
+select json running_total, open_date FROM abcbank.savings_account;
 #Retrieving selected columns in JSON format
 select running_total, toJson(open_date) from savings_account;
 
