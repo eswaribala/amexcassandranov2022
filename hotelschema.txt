@@ -100,3 +100,14 @@ CREATE TABLE reservation.guests (
   addresses map<text,text>,
   confirm_number text )
   WITH comment = 'Q9. Find guest by ID';
+  
+  CREATE TABLE reservation.guests (
+  guest_id uuid PRIMARY KEY,
+  first_name text,
+  last_name text,
+  title text,
+  emails set<text>,
+  phone_numbers list<bigint>,
+  addresses map<text,text>,
+  confirm_number text )
+  WITH comment = 'Q9. Find guest by ID';
