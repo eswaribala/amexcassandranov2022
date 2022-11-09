@@ -1,5 +1,5 @@
 CREATE KEYSPACE hotel WITH replication =
-  {‘class’: ‘SimpleStrategy’, ‘replication_factor’ : 3};
+  {'class': 'SimpleStrategy', 'replication_factor' : 3};
 
 CREATE TYPE hotel.address (
   street text,
@@ -15,7 +15,7 @@ CREATE TABLE hotel.hotels_by_poi (
   phone text,
   address frozen<address>,
   PRIMARY KEY ((poi_name), hotel_id) )
-  WITH comment = ‘Q1. Find hotels near given poi’
+  WITH comment = 'Q1. Find hotels near given poi'
   AND CLUSTERING ORDER BY (hotel_id ASC) ;
 
 CREATE TABLE hotel.hotels (
@@ -24,7 +24,7 @@ CREATE TABLE hotel.hotels (
   phone text,
   address frozen<address>,
   pois set )
-  WITH comment = ‘Q2. Find information about a hotel’;
+  WITH comment = 'Q2. Find information about a hotel';
 
 CREATE TABLE hotel.pois_by_hotel (
   poi_name text,
@@ -39,7 +39,7 @@ CREATE TABLE hotel.available_rooms_by_hotel_date (
   room_number smallint,
   is_available boolean,
   PRIMARY KEY ((hotel_id), date, room_number) )
-  WITH comment = ‘Q4. Find available rooms by hotel date’;
+  WITH comment = 'Q4. Find available rooms by hotel date';
 
 CREATE TABLE hotel.amenities_by_room (
   hotel_id text,
@@ -47,10 +47,10 @@ CREATE TABLE hotel.amenities_by_room (
   amenity_name text,
   description text,
   PRIMARY KEY ((hotel_id, room_number), amenity_name) )
-  WITH comment = ‘Q5. Find amenities for a room’;
+  WITH comment = 'Q5. Find amenities for a room';
 
-CREATE KEYSPACE reservation WITH replication = {‘class’:
-  ‘SimpleStrategy’, ‘replication_factor’ : 3};
+CREATE KEYSPACE reservation WITH replication = {'class':
+  'SimpleStrategy', 'replication_factor' : 3};
 
 CREATE TYPE reservation.address (
   street text,
@@ -67,7 +67,7 @@ CREATE TABLE reservation.reservations_by_confirmation (
   room_number smallint,
   guest_id uuid,
   PRIMARY KEY (confirm_number) )
-  WITH comment = ‘Q6. Find reservations by confirmation number’;
+  WITH comment = 'Q6. Find reservations by confirmation number';
 
 CREATE TABLE reservation.reservations_by_hotel_date (
   hotel_id text,
@@ -77,7 +77,7 @@ CREATE TABLE reservation.reservations_by_hotel_date (
   confirm_number text,
   guest_id uuid,
   PRIMARY KEY ((hotel_id, start_date), room_number) )
-  WITH comment = ‘Q7. Find reservations by hotel and date’;
+  WITH comment = 'Q7. Find reservations by hotel and date';
 
 CREATE TABLE reservation.reservations_by_guest (
   guest_last_name text,
@@ -88,7 +88,7 @@ CREATE TABLE reservation.reservations_by_guest (
   confirm_number text,
   guest_id uuid,
   PRIMARY KEY ((guest_last_name), hotel_id) )
-  WITH comment = ‘Q8. Find reservations by guest name’;
+  WITH comment = 'Q8. Find reservations by guest name';
 
 CREATE TABLE reservation.guests (
   guest_id uuid PRIMARY KEY,
@@ -100,4 +100,4 @@ CREATE TABLE reservation.guests (
   addresses map<text,
   frozen<address>,
   confirm_number text )
-  WITH comment = ‘Q9. Find guest by ID’;
+  WITH comment = 'Q9. Find guest by ID';
