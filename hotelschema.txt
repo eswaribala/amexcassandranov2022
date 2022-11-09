@@ -95,9 +95,8 @@ CREATE TABLE reservation.guests (
   first_name text,
   last_name text,
   title text,
-  emails set,
-  phone_numbers list,
-  addresses map<text,
-  address,
+  emails set<text>,
+  phone_numbers list<bigint>,
+  addresses map<text,text>,
   confirm_number text )
   WITH comment = 'Q9. Find guest by ID';
