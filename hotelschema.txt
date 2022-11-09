@@ -112,8 +112,13 @@ CREATE TABLE reservation.guests (
   confirm_number text )
   WITH comment = 'Q9. Find guest by ID';
   
-  
+  #insert
   insert into hotels(id,name,phone,address)values('101','TAJ','9956789009',{street:'Highway',city:'Chennai',state_or_province:'tamilnadu',postal_code:'60002',country:'India'});
+  
+  #bulk insert
   COPY hotel.hotels(id,name,phone,address) FROM '/hotels.csv' WITH DELIMITER=',' AND HEADER=TRUE ;
+  
+  #secondary index
+  create index hotel_id_idx on hotels_by_poi(hotel_id);
 
   
