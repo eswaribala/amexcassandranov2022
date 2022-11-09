@@ -55,7 +55,12 @@ INSERT INTO savings_account JSON '{
 "open_date" : "2007-09-12",
 "interest_rate" : 0.8 }';
 
-
+INSERT INTO abcbank.savings_account (
+  account_no, running_total, open_date,interest_rate
+) VALUES (
+  20000, 34000, '2015-05-27', 0.8
+)
+USING TTL 86400;
 
 #Limit
 SELECT * From abcbank.savings_account LIMIT 1;
@@ -68,10 +73,14 @@ SELECT running_total, open_date FROM abcgroup.savings_account WHERE  account_no=
 SELECT * FROM abcgroup.savings_account WHERE running_total=7800 ALLOW FILTERING;
 
 #secondary index
+
 CREATE INDEX running_total_idx ON savings_account (running_total);
 
 
-#SSAI
+#SASI
+#Enable SASI Index true in cassandra.yaml
+#restart cassandra
+
 CREATE CUSTOM INDEX IF NOT EXISTS running_total_sec_idx ON savings_account (running_total) USING 'org.apache.cassandra.index.sasi.SASIIndex';
 
 
