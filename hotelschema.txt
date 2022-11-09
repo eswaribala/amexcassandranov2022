@@ -114,3 +114,6 @@ CREATE TABLE reservation.guests (
   
   
   insert into hotels(id,name,phone,address)values('101','TAJ','9956789009',{street:'Highway',city:'Chennai',state_or_province:'tamilnadu',postal_code:'60002',country:'India'});
+  COPY hotel.hotels(id,name,phone,address) FROM '/hotels.csv' WITH DELIMITER=',' AND HEADER=TRUE ;
+
+  
