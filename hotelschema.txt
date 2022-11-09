@@ -22,8 +22,8 @@ CREATE TABLE hotel.hotels (
   id text PRIMARY KEY,
   name text,
   phone text,
-  address address,
-  pois set )
+  address address
+  )
   WITH comment = 'Q2. Find information about a hotel';
 
 CREATE TABLE hotel.pois_by_hotel (
