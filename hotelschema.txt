@@ -13,7 +13,7 @@ CREATE TABLE hotel.hotels_by_poi (
   hotel_id text,
   name text,
   phone text,
-  address frozen<address>,
+  address address,
   PRIMARY KEY ((poi_name), hotel_id) )
   WITH comment = 'Q1. Find hotels near given poi'
   AND CLUSTERING ORDER BY (hotel_id ASC) ;
@@ -22,7 +22,7 @@ CREATE TABLE hotel.hotels (
   id text PRIMARY KEY,
   name text,
   phone text,
-  address frozen<address>,
+  address address,
   pois set )
   WITH comment = 'Q2. Find information about a hotel';
 
@@ -98,6 +98,6 @@ CREATE TABLE reservation.guests (
   emails set,
   phone_numbers list,
   addresses map<text,
-  frozen<address>,
+  address,
   confirm_number text )
   WITH comment = 'Q9. Find guest by ID';
