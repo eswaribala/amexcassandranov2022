@@ -16,7 +16,7 @@ CREATE TABLE hotel.hotels_by_poi (
   address address,
   PRIMARY KEY ((poi_name), hotel_id) )
   WITH comment = 'Q1. Find hotels near given poi'
-  AND CLUSTERING ORDER BY (hotel_id ASC) ;
+  AND CLUSTERING ORDER BY (hotel_id DESC) ;
 
 CREATE TABLE hotel.hotels (
   id text PRIMARY KEY,
