@@ -1,0 +1,48 @@
+### DML ###
+
+# Keyspace Name
+keyspace: globalbank
+
+# The CQL for creating a keyspace (optional if it already exists)
+keyspace_definition: |
+  CREATE KEYSPACE globalbank WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
+
+# Table name
+table: customer
+
+# The CQL for creating a table you wish to stress (optional if it already exists)
+table_definition: |
+  CREATE TABLE customer (
+        name text,
+        customer_id bigint,
+        joining_date date,
+        email text,
+        
+        PRIMARY KEY(joining_date, customer_id)
+  ) WITH  comment='A table to hold customer'
+
+### Column Distribution Specifications ###
+ 
+columnspec:
+
+  - name: joining_date
+    size: uniform(5..10)       #title names are relatively short
+
+  - name: customer_id
+    cluster: fixed(1)         #under each size we will have max 1 clothes
+
+  
+### Batch Ratio Distribution Specifications ###
+
+insert:
+  partitions: fixed(1)            # Our partition key is the domain so only insert one per batch
+  select:    fixed(1)/200        
+  batchtype: UNLOGGED             # Unlogged batches
+
+#
+# A list of queries you wish to run against the schema
+#
+queries:
+   singlecustomer:
+      cql: select * from customer where joining_date = ? LIMIT 1 
+      fields: samerow
