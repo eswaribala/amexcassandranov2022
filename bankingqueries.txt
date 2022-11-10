@@ -101,8 +101,82 @@ chmod a+x cassandra-loader
 cassandra-loader -f savingsaccount.csv -host 172.20.0.160 -schema "abcgroup.savings_account(account_no,running_total,open_date,interest_date)"
 
 
+#Full Repair
+
+CREATE KEYSPACE CQLKeyspace
+  ... WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 3};
+
+use cqlkeyspace;
+CREATE TABLE t (
+           ...   id int,
+           ...   k int,
+           ...   v text,
+           ...   PRIMARY KEY (id)
+           ... );
+INSERT INTO t (id, k, v) VALUES (0, 0, 'val0');
+INSERT INTO t (id, k, v) VALUES (1, 1, 'val1');
+SELECT * FROM t;
+ALTER KEYSPACE CQLKeyspace
+           ... WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 4};
+#replication factor changed
+nodetool repair -full cqlkeyspace t
+
+#MV
+CREATE TABLE base_table
+(
+Key1 int,
+Col1 int,
+Col2 int,
+Col3 int,
+Col4 text,
+PRIMARY KEY (key1, Col1, Col2)
+); 
+
+Case-1:
+CREATE MATERIALIZED VIEW test_MV1 AS 
+SELECT * 
+FROM test_MV1 
+WHERE key1 IS NOT NULL 
+      AND Col1 IS NOT NULL 
+      AND Col2 IS NOT NULL 
+PRIMARY KEY (Col1, key1, Col2);
 
 
+Case-2:
+CREATE MATERIALIZED VIEW test_MV2 AS 
+SELECT * 
+FROM test_MV2 
+WHERE key1 IS NOT NULL 
+      AND Col1 IS NOT NULL 
+      AND Col2 IS NOT NULL 
+      AND Col3 IS NOT NULL 
+PRIMARY KEY (Col3, key1, Col1, Col2); 
 
+#not allowed
+Case-1:
+CREATE MATERIALIZED VIEW test_MV1 AS 
+SELECT * 
+FROM test_MV2 
+WHERE key1 IS NOT NULL 
+      AND Col1 IS NOT NULL 
+      AND Col2 IS NOT NULL 
+      AND Col3 IS NOT NULL 
+PRIMARY KEY (Col3, Col4, key1, Col1, Col2);  
+ // * ERROR : it will give an error that Col3 
+         and Col4 is not primary key in base table.
+
+Case-2:
+CREATE MATERIALIZED VIEW test_MV1 AS 
+SELECT * 
+FROM test_MV2 
+WHERE Col1 IS NOT NULL 
+      AND Col2 IS NOT NULL 
+PRIMARY KEY (Col1, Col2);
+// * ERROR : it will give an error that key1 is primary key 
+    in base table that must contain in materialized view. 
+
+#alter
+ALTER MATERIALIZED VIEW [keyspace_name.] view_name 
+[WITH table_options] 
 
  
