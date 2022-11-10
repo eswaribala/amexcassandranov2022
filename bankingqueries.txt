@@ -106,12 +106,7 @@ cassandra-loader -f savingsaccount.csv -host 172.20.0.160 -schema "abcgroup.savi
 CREATE KEYSPACE CQLKeyspace WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 3};
 
 use cqlkeyspace;
-CREATE TABLE t (
-           ...   id int,
-           ...   k int,
-           ...   v text,
-           ...   PRIMARY KEY (id)
-           ... );
+CREATE TABLE t (id int, k int, v text, PRIMARY KEY (id) );
 INSERT INTO t (id, k, v) VALUES (0, 0, 'val0');
 INSERT INTO t (id, k, v) VALUES (1, 1, 'val1');
 SELECT * FROM t;
