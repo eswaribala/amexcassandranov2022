@@ -43,6 +43,6 @@ cassandra-stress user profile=bank-stress.yaml n=1000000 ops\(insert=3,read1=1\)
 JVM_OPTS="$JVM_OPTS -Dcassandra.ignore_rack=true -Dcassandra.ignore_dc=true"
 
 
-ALTER KEYSPACE system_auth WITH REPLICATION = {'class' : 'NetworkTopologyStrategy', 'DC1' : 3, 'DC2' : 2};
+ALTER KEYSPACE excalibur WITH REPLICATION = {'class' : 'NetworkTopologyStrategy', 'DC1' : 3, 'DC2' : 2};
 
 
