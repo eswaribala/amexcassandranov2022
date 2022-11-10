@@ -43,5 +43,6 @@ cassandra-stress user profile=bank-stress.yaml n=1000000 ops\(insert=3,read1=1\)
 JVM_OPTS="$JVM_OPTS -Dcassandra.ignore_rack=true -Dcassandra.ignore_dc=true"
 
 
+CREATE KEYSPACE Excalibur WITH strategy_class = 'NetworkTopologyStrategy' AND strategy_options:DC1 = 2 AND strategy_options:DC2 = 2;
 
 
