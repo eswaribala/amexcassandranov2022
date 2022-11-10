@@ -1,0 +1,3 @@
+create keyspace edutube with replication={'class':'NetworkTopologyStrategy','DC1':'1','DC2':'1','DC3':'1'} AND durable_writes = true;
+
+COPY edutube.videos(video_id,added_date,description,title,user_id) FROM '/videos.csv' WITH DELIMITER=',' AND HEADER=TRUE ;
