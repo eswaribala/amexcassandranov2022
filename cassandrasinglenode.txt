@@ -36,5 +36,6 @@ select * from Library.book;
 #stress test
 cassandra-stress write n=100000 -node 172.20.0.161 -port native=9042
 cassandra-stress read n=100000 -node 172.20.0.161 -port native=9042
+cassandra-stress user profile=bank-stress.yaml n=1000000 ops\(insert=3,read1=1\) no-warmup cl=QUORUM
 
 
