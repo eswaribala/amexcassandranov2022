@@ -110,8 +110,7 @@ CREATE TABLE t (id int, k int, v text, PRIMARY KEY (id) );
 INSERT INTO t (id, k, v) VALUES (0, 0, 'val0');
 INSERT INTO t (id, k, v) VALUES (1, 1, 'val1');
 SELECT * FROM t;
-ALTER KEYSPACE CQLKeyspace
-           ... WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 4};
+ALTER KEYSPACE CQLKeyspace WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 4};
 #replication factor changed
 nodetool repair -full cqlkeyspace t
 
