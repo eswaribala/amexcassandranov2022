@@ -44,5 +44,5 @@ insert:
 #
 queries:
    singlecustomer:
-      cql: select * from customer where joining_date = ? LIMIT 1 
+      cql: select * from customer where customer_id = ? 
       fields: samerow
