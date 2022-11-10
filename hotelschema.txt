@@ -123,3 +123,10 @@ CREATE TABLE reservation.guests (
 
 #SASI
   CREATE CUSTOM INDEX IF NOT EXISTS hotel_id_sasi_idx ON hotels_by_poi (hotel_id) USING 'org.apache.cassandra.index.sasi.SASIIndex';
+
+#materialized view
+#enable mv in cassandra.yaml
+
+create materialized view hotels_by_poi_mv as select poi_name, hotel_id,name,address from hotels_by_poi where hotel_id IS NOT NULL and poi_name IS NOT NULL primary key(poi_name,hotel_id);
+  
+  
