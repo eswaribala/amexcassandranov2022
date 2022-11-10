@@ -38,4 +38,10 @@ cassandra-stress write n=100000 -node 172.20.0.161 -port native=9042
 cassandra-stress read n=100000 -node 172.20.0.161 -port native=9042
 cassandra-stress user profile=bank-stress.yaml n=1000000 ops\(insert=3,read1=1\) no-warmup cl=QUORUM
 
+#cassandra_env.sh for multi dc
+#set ignore
+JVM_OPTS="$JVM_OPTS -Dcassandra.ignore_rack=true -Dcassandra.ignore_dc=true"
+
+
+
 
