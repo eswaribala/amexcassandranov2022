@@ -38,6 +38,10 @@ insert:
   partitions: fixed(1)            # Our partition key is the domain so only insert one per batch
   select:    fixed(1)/200        
   batchtype: UNLOGGED             # Unlogged batches
+read:
+  partitions: fixed(1)            # Our partition key is the domain so only insert one per batch
+  select:    fixed(1)/200        
+  batchtype: UNLOGGED             # Unlogged batches
 
 #
 # A list of queries you wish to run against the schema
