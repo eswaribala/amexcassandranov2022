@@ -32,3 +32,9 @@ INSERT INTO  Library.book (ISBN, copy, title) VALUES('1234',2, 'Hindi');
 INSERT INTO  Library.book (ISBN, copy, title) VALUES('1234',3, 'English');
 
 select * from Library.book;
+
+#stress test
+cassandra-stress write n=100000 -node 172.20.0.161 -port native=9042
+cassandra-stress read n=100000 -node 172.20.0.161 -port native=9042
+
+
