@@ -45,4 +45,6 @@ JVM_OPTS="$JVM_OPTS -Dcassandra.ignore_rack=true -Dcassandra.ignore_dc=true"
 
 Create KEYSPACE excalibur WITH REPLICATION = {'class' : 'NetworkTopologyStrategy', 'DC1' : 3, 'DC2' : 2};
 
+sudo sstableloader -d 172.20.0.161 /var/lib/cassandra/data/edutube/videos-398be870617d11ed9a92b58fc5d2853f/
+
 
