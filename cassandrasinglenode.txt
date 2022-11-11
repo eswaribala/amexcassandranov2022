@@ -47,4 +47,5 @@ Create KEYSPACE excalibur WITH REPLICATION = {'class' : 'NetworkTopologyStrategy
 
 sudo sstableloader -d 172.20.0.161 /var/lib/cassandra/data/edutube/videos-398be870617d11ed9a92b58fc5d2853f/
 
+nodetool setlogginglevel org.apache.cassandra.gms.Gossiper TRACE
 
