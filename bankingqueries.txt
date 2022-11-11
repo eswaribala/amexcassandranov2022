@@ -172,4 +172,32 @@ PRIMARY KEY (Col1, Col2);
 ALTER MATERIALIZED VIEW [keyspace_name.] view_name 
 [WITH table_options] 
 
+
+#batch
+CREATE TABLE product (
+  product_id UUID,
+  variant_id UUID,
+  product_name text,
+  description text,
+  price float,
+  PRIMARY KEY (product_id, variant_id)
+  );
+
+
+BEGIN BATCH 
+
+INSERT INTO product (product_id, variant_id, product_name) 
+VALUES (2c11bbcd-4587-4d15-bb57-4b23a546bd7f,0e9ef8f7-d32b-4926-9d37-27225933a5f3,'banana') IF NOT EXISTS; 
+
+INSERT INTO product (product_id, variant_id, product_name) 
+VALUES (2c11bbcd-4587-4d15-bb57-4b23a546bd7f,0e9ef8f7-d32b-4926-9d37-27225933a5f5,'banana') IF NOT EXISTS; 
+
+UPDATE product SET price = 7.12, description = 'banana v1' 
+WHERE product_id = 2c11bbcd-4587-4d15-bb57-4b23a546bd7f AND variant_id=0e9ef8f7-d32b-4926-9d37-27225933a5f3; 
+
+UPDATE product SET price = 11.90, description = 'banana v2' 
+WHERE product_id = 2c11bbcd-4587-4d15-bb57-4b23a546bd7f AND variant_id=0e9ef8f7-d32b-4926-9d37-27225933a5f5; 
+
+APPLY BATCH;
+
  
